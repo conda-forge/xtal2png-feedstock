@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/xtal2png-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/xtal2png-{{ version }}.tar.gz
   sha256: 2a876e8bb3754d76e0ec52576b003c5486374cc8e38aa54d1524d367843286b2
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - xtal2png = xtal2png.core:run
   script: {{ PYTHON }} -m pip install . -vv
@@ -21,12 +21,12 @@ requirements:
   host:
     - pip
     - setuptools-scm
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - numpy
     - pillow
     - pymatgen
-    - python >=3.6
+    - python >={{ python_min }}
     - importlib-metadata
     - plotly
     - python-kaleido
@@ -39,6 +39,7 @@ test:
     - xtal2png --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/sparks-baird/xtal2png/
